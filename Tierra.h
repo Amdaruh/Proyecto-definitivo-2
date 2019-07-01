@@ -5,6 +5,7 @@
 #ifndef GAME_TIERRA_H
 #define GAME_TIERRA_H
 
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
 #include "Tipos.h"
@@ -16,9 +17,19 @@ const TipoEntero ALTURA = 21;
 const TipoEntero ANCHO  = 21;
 const TipoCaracter COLOR ='.';
 
+template <typename T>
+T input(string label) {
+    T value;
+    cout << label;
+    cin >> value;
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    return value;
+
+
 class Tierra {
 private:
-    vector<vector<char>> plano;
+    sf::RenderWindow* plano;
     vector<Objeto*> objetos;
 public:
     Tierra();
