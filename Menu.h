@@ -10,15 +10,15 @@
 #include "Tierra.h"
 #include "Tipos.h"
 
-template <typename T>
-T input(string label) {
-    T value;
-    cout << label;
-    cin >> value;
-    cin.clear();
-    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-    return value;
-}
+//template <typename T>
+//T input(string label) {
+//    T value;
+//    cout << label;
+//    cin >> value;
+//    cin.clear();
+ //   cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+ //   return value;
+//}
 
 /*
 //--- Esta seria la funcion para leer un string,
