@@ -16,16 +16,18 @@ private:
     TipoCaracter  color;
     TipoEntero    posX;
     TipoEntero    posY;
+    TipoEntero  figura;
 public:
     Objeto();
     Objeto(const TipoString& nombre, TipoCaracter color,
-           TipoEntero posX, TipoEntero posY);
+           TipoEntero posX, TipoEntero posY, TipoEntero fig);
     virtual ~Objeto();
     void setNombre(const TipoString& nombre);
     string     getNombre();
     TipoEntero getPosX();
     TipoEntero getPosY();
     char getColor();
+    TipoEntero getFigura();
     void moverse(TipoEntero x, TipoEntero y);
     string mostrarPosicion();
 
