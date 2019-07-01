@@ -5,18 +5,19 @@
 
 #include "Objeto.h"
 
-Objeto::Objeto(): color{}, posX{}, posY{}  {}
+Objeto::Objeto(): color{}, posX{}, posY{}, figura{}  {}
 
 Objeto::Objeto(const TipoString& nombre, TipoCaracter color,
-               TipoEntero posX, TipoEntero posY):
+               TipoEntero posX, TipoEntero posY, TipoEntero fig):
         nombre{nombre}, color{color},
-        posX{posX}, posY{posY} {}
+        posX{posX}, posY{posY}, figura{fig} {}
 
 Objeto::~Objeto() {}
 
 void Objeto::setNombre(const TipoString& nombre) { this->nombre = nombre; }
 void Objeto::moverse(TipoEntero x, TipoEntero y) {} //--  por implementar
 
+TipoEntero   Objeto::getFigura() { return figura;}
 TipoString   Objeto::getNombre() { return nombre; }
 TipoEntero   Objeto::getPosX()   { return posX; }
 TipoEntero   Objeto::getPosY()   { return posY; }
