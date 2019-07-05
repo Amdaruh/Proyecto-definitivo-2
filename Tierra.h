@@ -1,49 +1,52 @@
-//
-// Created by utec on 21/06/19.
-//
-
 #ifndef GAME_TIERRA_H
 #define GAME_TIERRA_H
 
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <math.h>
+#include <SFML/Graphics.hpp>
+#include <limits>
 #include <vector>
 #include "Tipos.h"
-#include "Objeto.h"
-using namespace std;
+#include "Museo.h"
+#include "Restaurante.h"
+#include "Hotel.h"
 
-// Valores constantes
-const TipoEntero ALTURA = 21;
-const TipoEntero ANCHO  = 21;
-const TipoCaracter COLOR ='.';
 
 template <typename T>
-T input(string label) {
+T input(const string& label) {
     T value;
     cout << label;
     cin >> value;
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     return value;
+}
 
+using namespace std;
 
 class Tierra {
 private:
+    TipoEntero altura;
+    TipoEntero ancho;
     sf::RenderWindow* plano;
-    vector<Objeto*> objetos;
+    vector<Hotel*> hoteles;
+    vector<Restaurante*> restaurantes;
+    vector<Museo*> museos;
 public:
     Tierra();
-    Tierra(TipoEntero altura, TipoEntero ancho);
+    Tierra(TipoEntero& _ancho, TipoEntero& _altura);
     virtual ~Tierra();
-    void adicionarObjeto(Objeto* objeto);
+    void adicionarObjeto(TipoString& _nombre, TipoCaracter& _color, TipoCaracter& _lugar,  TipoEntero& _cali);
     Objeto* removerObjeto(string& nombre);
     void imprimirObjetos();
-    TipoEntero getAltura();
-    TipoEntero getAncho();
-    TipoEntero getCantidadObjectos();
-    void dibujarTierra();
+    TipoEntero getCantidadHoteles();
+    TipoEntero getCantidadMuseos();
+    TipoEntero getCantidadRestaurantes();
+    void masCercano();
+    void tmejores();
+    void mejores();
     void actualizarTierra();
+    void capturarEventos();
+    void dibujarTierra();
 };
-
-
 #endif //GAME_TIERRA_H

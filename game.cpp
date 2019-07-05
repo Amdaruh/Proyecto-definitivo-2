@@ -2,31 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "Menu.h"
 
-int main() {
-    Menu menu;
+
+int main(){
+    TipoEntero altura , ancho;
+    cout << "Ingresar altura de ventana: ";
+    cin >> altura;
+    cout << "Ingresar ancho de ventana: ";
+    cin >> ancho;
+    Menu menu(ancho,altura);
     menu.ejecutar();
     return 0;
 }
-
-//int main()
-//{
-//    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-//    sf::CircleShape shape(100.f);
-//    shape.setFillColor(sf::Color::Green);
-//
-//    while (window.isOpen())
-//    {
-//        sf::Event event;
-//        while (window.pollEvent(event))
-//        {
-//            if (event.type == sf::Event::Closed)
-//                window.close();
-//        }
-//
-//        window.clear();
-//        window.draw(shape);
-//        window.display();
-//    }
-//
-//    return 0;
-//}

@@ -1,7 +1,3 @@
-//
-// Created by utec on 21/06/19.
-//
-
 #include "Menu.h"
 #include <iostream>
 #include <string>
@@ -9,11 +5,11 @@
 
 using namespace std;
 
-enum class Opciones { Agregar=1, Remover, Mostrar};
+enum class Opciones { Agregar=1, Remover, Mostrar, MasCercano, Tmejores, Mejores};
 
 
 void limpiar() {
-    cout << "\033[2J\033[0;0H";
+cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 }
 
 void esperar() {
@@ -23,40 +19,45 @@ void esperar() {
     }while (toupper(w) != 'C');
 }
 
-void Menu::imprimirMenu() {
+Menu::Menu(TipoEntero _ancho, TipoEntero _altura): tierra(_ancho, _altura), opcion{} {}
+
+void Menu::masCercano(){
+    tierra.masCercano();
+}
+
+void Menu::tmejores(){
+    tierra.tmejores();
+}
+
+void Menu::mejores(){
+
+}
+
+void Menu::mostrarMenu() {
     limpiar();
     cout << "MENU\n";
     cout << string(4, '-') << "\n\n";
     cout << "1. Agregar un nuevo objeto\n";
     cout << "2. Remover objeto\n";
-    cout << "3. Dibujar Mapa\n\n";
+    cout << "3. Dibujar Mapa\n";
+    cout << "4. Los tres lugares mas cercanos\n";
+    cout << "5. Los tres mejores de cada tipo\n";
+    cout << "6. Los tres mejores\n\n";
     cout << "0. Para Salir\n\n";
 }
 
 
 void Menu::agregarObjeto() {
-     tierra.adicionarObjeto();
-   // auto    nombre = input<TipoString>("Ingrese Nombre : ");
-   // auto color  = input<TipoCaracter>("Ingrese color (Un caracter): ");
-
-//    auto x = input<TipoEntero>("Ingrese posicion X : ");
-
-
-//    while (x < 0 || x >= tierra.getAncho()) {
-//        cout << "Posicion X Incorrecta, los limites son: 0, "
-//             << tierra.getAncho() - 1 << "\n";
-//        x = input<TipoEntero>("Ingrese posicion X : ");
-//    }
-
-//    TipoEntero y = input<TipoEntero>("Ingrese posicion Y : ");
-//    while (y < 0 || y >= tierra.getAncho()) {
-//        cout  << "Posicion Y Incorrecta, los limites son: 0, "
-//              << tierra.getAltura() - 1 << "\n";
-//        y = input<TipoEntero>("Ingrese posicion Y : ");
-//    }
-
-//    tierra.adicionarObjeto(new Objeto(nombre, color, x, y));
-//}
+    auto nombre = input<TipoString>("Ingresar nombre: ");
+    cout << endl;
+    auto color = input<TipoCaracter>("Ingresar color(solo un caracter) : ");
+    cout << endl;
+    auto lugar = input<TipoCaracter>("Ingrese el tipo de lugar(M = Museo, R = Restaurante, H = Hotel): ");
+    cout << endl;
+    auto calificacion = input<TipoEntero>("Ingrese su grado de satisfaccion del 1 al 10: ");
+    cout << "Abra la ventana y haga click donde quiera posicionar el lugar: ";
+    tierra.adicionarObjeto(nombre,color,lugar,calificacion);
+}
 
 void Menu::removerObjeto() {
     auto nombre = input<TipoString>("Ingrese Nombre: ");
@@ -74,17 +75,13 @@ void Menu::removerObjeto() {
 
 void Menu::dibujarMapa() {
     limpiar();
-    tierra.actualizarTierra();
-    tierra.dibujarTierra();
-    cout << '\n';
     tierra.imprimirObjetos();
-    cout << '\n';
-    esperar();
+    tierra.dibujarTierra();
 }
 
 void Menu::ejecutar() {
     do {
-        imprimirMenu();
+        mostrarMenu();
         cin >> opcion;
         seleccionarOpcion();
     } while (opcion != 0);
@@ -103,5 +100,13 @@ void Menu::seleccionarOpcion() {
         case  Opciones::Mostrar: // Dibujando Tierra
             dibujarMapa();
             break;
+        case  Opciones::MasCercano: // muestra los 3 mas cercanos
+            masCercano();
+            break;
+        case  Opciones::Tmejores: // muestra los mejores
+            tmejores();
+            break;
     }
 }
+
+Menu::~Menu() = default;
